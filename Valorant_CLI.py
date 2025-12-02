@@ -1,0 +1,97 @@
+# from random_vlr import Vlr_randoms
+import difflib
+import random
+from random_vlr import agents
+import random_vlr
+from random_vlr import data
+import argparse
+import sys
+
+# create parser object
+parser = argparse.ArgumentParser(prog='Valorant Randomizer' ,
+                                 
+                                 description="Random Teams and Agents " ,
+                                 
+                                  epilog= "Read the flags carefully" )
+## ====================================================================================================================================
+# create arguments
+parser.add_argument("-er",  help="exclude role", type=str, nargs="+")
+parser.add_argument("-e",  help="exclude agent", type=str, nargs="+")
+parser.add_argument("-o" , help = "Get the single agent " , action = "store_true" )
+parser.add_argument("-t" , help = "Get the team " , action = "store_true" )
+parser.add_argument("-c" , help = "Get the controller " ,nargs='?' ,type  = int ,const=1, default = 1 )
+parser.add_argument("-s" , help = "Get the sentinal " , nargs='?',type  = int , const = 1,default = 1 )
+parser.add_argument("-d" , help = "Get the duelist" ,nargs='?' ,type  = int,const = 1 , default = 1)
+parser.add_argument("-i" , help = "Get the initaitor " , nargs='?',type  = int ,const =1, default = 1 )
+
+## ====================================================================================================================================
+# remember nargs = '?' means no args or one 
+# if temp list under condition means what is stored in the temp list depend of the past condtion
+
+# Get the object back which has your arguments that the user will pass using command line
+args = parser.parse_args()
+agent_data = data(agents)
+# # calling the flags
+# my_list = sys.argv
+# my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
+my_list = ["-c" , "3" ,"-o", "-t" ]
+
+dict_mylist = {}
+i = 0
+
+
+# ,"-er","-c"
+
+# while i < len(my_list):
+#     flag = my_list[i]
+#     if i + 1 < len(my_list) and not my_list[i+1].startswith("-"):
+#         value = my_list[i+1]
+#         dict_mylist[flag] = value
+#         i += 2
+#     elif flag == "-er":
+#         dict_mylist[flag] = my_list[i+1]
+#         i += 2
+    
+#     else:
+#         dict_mylist[flag] = True
+#         i += 1
+
+counter = 0
+listy = []
+# eindex = my_list.index("-e")
+# print(eindex)
+while counter < len(my_list):
+    flags = my_list[counter]
+    if flags in ["-c" , "-d" , "-s",'-i']:
+        try :
+            num =  int(my_list[counter + 1])
+            counter += 2
+
+        except ValueError:
+            num = 1
+            counter +=1   
+            
+        agent = agent_data.list_of_agents(flags , num )
+        for x in agent:
+            listy.append(x)
+        print(random.sample(listy , num))
+    # elif flags == "-e":
+    #     champ  = my_list[counter + 1]
+    #     output = agent_data.remove_agent(champ , num)
+
+    elif flags == "-t":
+       output= agent_data.team()
+       print(output)
+    
+    elif flags == "-o":
+        try:
+            num = int(my_list[counter + 1])
+            counter += 2
+        except ValueError:
+            num = 1 
+            counter += 1
+        
+        output = agent_data.single_agent(num)       
+        print(output)
+
+

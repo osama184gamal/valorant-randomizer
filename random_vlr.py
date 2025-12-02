@@ -1,0 +1,80 @@
+# Valorant Randomizer
+import random
+class data() : 
+    # define of the data
+    def __init__(self , agent):
+        self.agent = agent
+    
+    def list_of_agents(self , role , num):
+        list1 = []
+        for i in self.agent:
+            if  role in self.agent[i]["role"]:
+                   list1.append(i)
+        ran = random.sample(list1 , num)
+        return   ran         
+    
+    def remove_role (self , role ,num):
+        delete_list = []
+        list1 = []
+        agent = self.agent
+        for i , x in agent.items():
+            if x["role"] == role:
+                delete_list.append(i)
+            else:
+                list1.append(i)
+             
+        return random.sample(list1 , num ) 
+    
+    
+    def remove_agent(self , champ , num):
+        agent = self.agent
+        if champ in agent:
+            del agent[champ]
+        list1 = list(agent.keys())
+        return random.sample(list1 , num)
+    
+    def team (self):
+        agent = [x for x in self.agent ]
+        return random.sample( agent , 5)
+    
+    def single_agent(self , num):
+        agent = [x for x in self.agent ]
+        return random.sample(agent , num)
+
+agents =  {
+    "Clove": {"role": "-c"},
+    "Omen": {"role": "-c"},
+    "Brimstone": {"role": "-c"},
+    "Viper": {"role": "-c"},
+    "Harbor": {"role": "-c"},
+    "Astra": {"role": "-c"},
+
+    "Iso": {"role": "-d"},
+    "Jett": {"role": "-d"},
+    "Neon": {"role": "-d"},
+    "Phoenix": {"role": "-d"},
+    "Raze": {"role": "-d"},
+    "Reyna": {"role": "-d"},
+    "Yoru": {"role": "-d"},
+    "Waylay": {"role": "-d"},
+
+    "Killjoy": {"role": "-s"},
+    "Sage": {"role": "-s"},
+    "Chamber": {"role": "-s"},
+    "Deadlock": {"role": "-s"},
+    "Cypher": {"role": "-s"},
+    "Vyse": {"role": "-s"},
+    "Veto": {"role": "-s"},
+
+    "Breach": {"role": "-i"},
+    "Fade": {"role": "-i"},
+    "Gekko": {"role": "-i"},
+    "KAY/O": {"role": "-i"},
+    "Skye": {"role": "-i"},
+    "Sova": {"role": "-i"},
+    "Tejo": {"role": "-i"},
+}
+
+
+
+
