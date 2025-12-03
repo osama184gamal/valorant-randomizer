@@ -26,13 +26,17 @@ class data() :
         return random.sample(list1 , 5 ) 
     
     
-    def remove_agent(self , champ , num):
+    def remove_agent(self , role ,champ , num):
+        list1 = []
         agent = self.agent
-        if champ in agent:
-            del agent[champ]
-        list1 = list(agent.keys())
-        return random.sample(list1 , num)
-    
+        for i ,x in agent.items():
+            if x["role"] == role:
+                list1.append(i)
+        if champ in list1:
+            list1.remove(champ)
+        return random.sample(list1 , num)                    
+
+ 
     def team (self):
         agent = [x for x in self.agent ]
         return random.sample( agent , 5)
@@ -74,7 +78,4 @@ agents =  {
     "Sova": {"role": "-i"},
     "Tejo": {"role": "-i"},
 }
-
-
-
 

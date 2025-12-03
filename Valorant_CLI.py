@@ -37,9 +37,7 @@ my_list = my_list1[1:]
 # my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
 # my_list = ["-c" , "3" ,"-o", "-t" ]
 
-
-
-
+listy = []
 
 counter = 0
 
@@ -60,11 +58,18 @@ while counter < len(my_list):
         
         if  counter < len(my_list) and my_list[counter] == "-e":
             value = my_list[counter + 1 ]
-            agent= agent_data.remove_agent(value , num)
+            role = agent_data.agent[value]["role"]
+            agent= agent_data.remove_agent( role , value , num)
+            
             counter += 2
-        
-        print(agent)
+        for x in agent:
+            listy.append(x)
+            if len(listy)  == 5:
+                print(listy)
+           
+    
         continue
+
 
    
 
