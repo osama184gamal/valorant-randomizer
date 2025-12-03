@@ -33,8 +33,8 @@ args = parser.parse_args()
 agent_data = data(agents)
 # # calling the flags
 # my_list = sys.argv
-# my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
-my_list = ["-c" , "3" ,"-o", "-t" ]
+my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
+# my_list = ["-c" , "3" ,"-o", "-t" ]
 
 dict_mylist = {}
 i = 0
@@ -71,21 +71,17 @@ while counter < len(my_list):
             counter +=1   
             
         agent = agent_data.list_of_agents(flags , num )
-        for x in agent:
-            listy.append(x)
-        print(random.sample(listy , num))
+       
+        
         if  counter < len(my_list) and my_list[counter] == "-e":
-            value = counter[counter + 1 ]
+            value = my_list[counter + 1 ]
             agent= agent_data.remove_agent(value , num)
-        print(random.sample([x for x in agent]),num)
+            counter += 2
+        
+        print(agent)
         continue
-    # remember to chnage the listy thing and print one value of the -e or the value of the agents 
 
-
-
-    # elif flags == "-e":
-    #     champ  = my_list[counter + 1]
-    #     output = agent_data.remove_agent(champ , num)
+   
 
     elif flags == "-t":
        output= agent_data.team()
@@ -104,7 +100,16 @@ while counter < len(my_list):
         
         output = agent_data.single_agent(num)       
         print(output)
+        
         continue
+  
+    elif flags == "-er":
+        value =  my_list[counter + 1]
+        output = agent_data.remove_role(value)
+        print(output)
+        counter += 2 
+        continue
+      
     else:
            counter +=1    
 

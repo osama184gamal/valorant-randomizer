@@ -13,7 +13,7 @@ class data() :
         ran = random.sample(list1 , num)
         return   ran         
     
-    def remove_role (self , role ,num):
+    def remove_role (self , role ):
         delete_list = []
         list1 = []
         agent = self.agent
@@ -23,7 +23,7 @@ class data() :
             else:
                 list1.append(i)
              
-        return random.sample(list1 , num ) 
+        return random.sample(list1 , 5 ) 
     
     
     def remove_agent(self , champ , num):
