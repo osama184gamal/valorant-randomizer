@@ -58,8 +58,7 @@ i = 0
 
 counter = 0
 listy = []
-# eindex = my_list.index("-e")
-# print(eindex)
+
 while counter < len(my_list):
     flags = my_list[counter]
     if flags in ["-c" , "-d" , "-s",'-i']:
@@ -75,6 +74,15 @@ while counter < len(my_list):
         for x in agent:
             listy.append(x)
         print(random.sample(listy , num))
+        if  counter < len(my_list) and my_list[counter] == "-e":
+            value = counter[counter + 1 ]
+            agent= agent_data.remove_agent(value , num)
+        print(random.sample([x for x in agent]),num)
+        continue
+    # remember to chnage the listy thing and print one value of the -e or the value of the agents 
+
+
+
     # elif flags == "-e":
     #     champ  = my_list[counter + 1]
     #     output = agent_data.remove_agent(champ , num)
@@ -82,6 +90,9 @@ while counter < len(my_list):
     elif flags == "-t":
        output= agent_data.team()
        print(output)
+       counter +=1
+       continue
+
     
     elif flags == "-o":
         try:
@@ -93,5 +104,8 @@ while counter < len(my_list):
         
         output = agent_data.single_agent(num)       
         print(output)
+        continue
+    else:
+           counter +=1    
 
 
