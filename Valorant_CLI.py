@@ -32,32 +32,17 @@ parser.add_argument("-i" , help = "Get the initaitor " , nargs='?',type  = int ,
 args = parser.parse_args()
 agent_data = data(agents)
 # # calling the flags
-# my_list = sys.argv
-my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
+my_list1 = sys.argv
+my_list = my_list1[1:]
+# my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
 # my_list = ["-c" , "3" ,"-o", "-t" ]
 
-dict_mylist = {}
-i = 0
 
 
-# ,"-er","-c"
 
-# while i < len(my_list):
-#     flag = my_list[i]
-#     if i + 1 < len(my_list) and not my_list[i+1].startswith("-"):
-#         value = my_list[i+1]
-#         dict_mylist[flag] = value
-#         i += 2
-#     elif flag == "-er":
-#         dict_mylist[flag] = my_list[i+1]
-#         i += 2
-    
-#     else:
-#         dict_mylist[flag] = True
-#         i += 1
 
 counter = 0
-listy = []
+
 
 while counter < len(my_list):
     flags = my_list[counter]
