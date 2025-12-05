@@ -40,7 +40,7 @@ my_list = my_list1[1:]
 listy = []
 
 counter = 0
-
+the_list = [champ for champ in agent_data.agent.keys() ]
 
 while counter < len(my_list):
     flags = my_list[counter]
@@ -51,13 +51,9 @@ while counter < len(my_list):
         else:
             num = 1
             counter +=1   
-        agent = agent_data.list_of_agents(flags , num )
-        
         if  counter < len(my_list) and my_list[counter] == "-e":
-            value = my_list[counter + 1 ]
-            role = agent_data.agent[value]["role"]
-            agent= agent_data.remove_agent( role , value , num)
-            counter += 2
+                 
+ 
         
         
         continue

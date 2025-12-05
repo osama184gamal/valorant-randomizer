@@ -5,11 +5,14 @@ class data() :
     def __init__(self , agent):
         self.agent = agent
     
-    def list_of_agents(self , role , num):
+    def list_of_agents(self , role , champ = None , num = 1 ):
         list1 = []
         for i in self.agent:
             if  role[1] in self.agent[i]["role"]:
                    list1.append(i)
+                   if champ in list1:
+                       list1.remove(champ)
+                    
         ran = random.sample(list1 , num )
         return   ran         
     
