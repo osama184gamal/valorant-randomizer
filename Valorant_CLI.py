@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(prog='Valorant Randomizer' ,
 # create arguments
 parser.add_argument("-er",  help="exclude role", type=str, nargs="+")
 parser.add_argument("-e",  help="exclude agent", type=str, nargs="+")
-parser.add_argument("-o" , help = "Get the single agent " , action = "store_true" )
+parser.add_argument("-o" , help = "Get the single agent " , nargs='?' ,type  = int ,const=1, default = 1 )
 parser.add_argument("-t" , help = "Get the team " , action = "store_true" )
 parser.add_argument("-c" , help = "Get the controller " ,nargs='?' ,type  = int ,const=1, default = 1 )
 parser.add_argument("-s" , help = "Get the sentinal " , nargs='?',type  = int , const = 1,default = 1 )
@@ -45,33 +45,22 @@ counter = 0
 while counter < len(my_list):
     flags = my_list[counter]
     if flags in ["-c" , "-d" , "-s",'-i']:
-        try :
+        if counter + 1 < len(my_list) and my_list[counter + 1].isdigit() : 
             num =  int(my_list[counter + 1])
             counter += 2
-
-        except ValueError:
+        else:
             num = 1
             counter +=1   
-            
         agent = agent_data.list_of_agents(flags , num )
-       
         
         if  counter < len(my_list) and my_list[counter] == "-e":
             value = my_list[counter + 1 ]
             role = agent_data.agent[value]["role"]
             agent= agent_data.remove_agent( role , value , num)
-            
             counter += 2
-        for x in agent:
-            listy.append(x)
-            if len(listy)  == 5:
-                print(listy)
-           
-    
+        
+        
         continue
-
-
-   
 
     elif flags == "-t":
        output= agent_data.team()
@@ -81,10 +70,10 @@ while counter < len(my_list):
 
     
     elif flags == "-o":
-        try:
+        if counter + 1 < len(my_list) and my_list[counter + 1].isdigit() :
             num = int(my_list[counter + 1])
             counter += 2
-        except ValueError:
+        else:
             num = 1 
             counter += 1
         
