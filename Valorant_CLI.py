@@ -34,13 +34,12 @@ agent_data = data(agents)
 # # calling the flags
 my_list1 = sys.argv
 my_list = my_list1[1:]
-# my_list = ["-c", "3", "-e" , "Brimstone" ,"-o" , "2", "-s", "2", "-t"   ]
-# my_list = ["-c" , "3" ,"-o", "-t" ]
+
 
 listy = []
 
 counter = 0
-the_list = [champ for champ in agent_data.agent.keys() ]
+
 
 while counter < len(my_list):
     flags = my_list[counter]
@@ -55,12 +54,18 @@ while counter < len(my_list):
         if  counter < len(my_list) and my_list[counter] == "-e":
                 value = my_list[counter + 1]
                 counter += 2       
+
         if value is not None:
+            
             agent = agent_data.list_of_agents(flags , champ= value , num = num)          
         else:
+            
             agent  = agent_data.list_of_agents(flags ,champ= None ,num= num)        
             
-        print(agent)
+        for s in agent:
+            listy.append(s)
+        
+        print(listy)    
         
         
         continue
