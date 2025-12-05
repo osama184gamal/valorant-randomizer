@@ -5,7 +5,7 @@ class data() :
     def __init__(self , agent):
         self.agent = agent
     
-    def list_of_agents(self , role , champ = None , num = 1 ):
+    def list_of_agents(self , role , champ  , num  ):
         list1 = []
         for i in self.agent:
             if  role[1] in self.agent[i]["role"]:
@@ -28,16 +28,6 @@ class data() :
              
         return random.sample(list1 , 5 ) 
     
-    
-    def remove_agent(self , role ,champ , num):
-        list1 = []
-        agent = self.agent
-        for i ,x in agent.items():
-            if x["role"] == role and x != champ :
-                list1.append(i)
-    
-        return random.sample(list1 , num)                    
-
  
     def team (self):
         agent = [x for x in self.agent ]

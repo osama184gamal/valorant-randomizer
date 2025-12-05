@@ -51,9 +51,16 @@ while counter < len(my_list):
         else:
             num = 1
             counter +=1   
+        value = None
         if  counter < len(my_list) and my_list[counter] == "-e":
-                 
- 
+                value = my_list[counter + 1]
+                counter += 2       
+        if value is not None:
+            agent = agent_data.list_of_agents(flags , champ= value , num = num)          
+        else:
+            agent  = agent_data.list_of_agents(flags ,champ= None ,num= num)        
+            
+        print(agent)
         
         
         continue
